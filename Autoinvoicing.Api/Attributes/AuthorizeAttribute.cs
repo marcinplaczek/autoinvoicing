@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace autoinvoicing_api.Attributes
+namespace Autoinvoicing.Api.Attributes
 {
     [AttributeUsage(validOn: AttributeTargets.Class | AttributeTargets.Method)]
     public class ApiKeyAuthorizeAttribute : Attribute, IAsyncActionFilter

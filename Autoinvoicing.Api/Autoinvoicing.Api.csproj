@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>autoinvoicing_api</RootNamespace>
+    <RootNamespace>Autoinvoicing.Api</RootNamespace>
     <UserSecretsId>09d660ec-c606-4215-8616-aa8040c125d1</UserSecretsId>
   </PropertyGroup>
 

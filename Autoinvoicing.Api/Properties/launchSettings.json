@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "autoinvoicing_api": {
+    "Autoinvoicing.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
