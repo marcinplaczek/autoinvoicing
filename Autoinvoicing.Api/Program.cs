@@ -1,8 +1,17 @@
+using Autoinvoicing.Domain.Services;
+using Autoinvoicing.Intefraces;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+
+
+builder.Services.AddCosmosRepository(options => {
+    options.CosmosConnectionString = builder.Configuration["CosmosDb:ConnectionString"];
+    options.DatabaseId = builder.Configuration["CosmosDb:DatabaseId"];
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
