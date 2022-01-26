@@ -1,6 +1,7 @@
 using Autoinvoicing.Api.Attributes;
+using Autoinvoicing.Domain.Models;
+using Autoinvoicing.Intefraces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Cosmos;
 
 namespace Autoinvoicing.Api.Controllers;
 
@@ -9,23 +10,19 @@ namespace Autoinvoicing.Api.Controllers;
 [Route("[controller]")]
 public class InvoiceController : ControllerBase
 {
-    private const string DatabaseId = "Invoices";
     private readonly ILogger<InvoiceController> _logger;
-    private readonly IConfiguration _configuration;
-    private readonly CosmosClient _cosmosClient;
+    private readonly IInvoiceService _invoiceService;
 
-    public InvoiceController(ILogger<InvoiceController> logger, IConfiguration configuration)
+    public InvoiceController(ILogger<InvoiceController> logger, IInvoiceService invoiceService)
     {
         _logger = logger;
-        _configuration = configuration;
-        _cosmosClient = new CosmosClient(_configuration["Autoinvoicing:CosmosDB:ConnectionString"]);
-        _cosmosClient.CreateDatabaseIfNotExistsAsync(DatabaseId);
+        _invoiceService = invoiceService;
     }
 
     [HttpGet]
     [Route("get")]
-    public string GetValue()
+    public ValueTask<IEnumerable<Invoice>> GetValue()
     {
-        return "it works";
+        return _invoiceService.GetAll();
     }
 }
